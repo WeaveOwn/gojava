@@ -13,8 +13,6 @@ public class ABC {
         Thread threads[] = new Thread[3];
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new ThreadPrint((char) ('A' + i) , 10*threads.length-1);
-        }
-        for (int i = 0; i < threads.length; i++) {
             threads[i].start();
         }
     }
@@ -38,7 +36,7 @@ class ThreadPrint extends Thread {
                 System.out.println(currentName);
                 n++;
             }
-            System.out.println(n);
+//            System.out.println(n);
         }
     }
 }

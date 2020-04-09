@@ -1,20 +1,20 @@
 package com.weaveown.effective.di;
 
-import com.google.common.collect.Maps;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
-public class Factory implements Supplier {
-
-    @Override
-    public Object get() {
-        Map<String, String> map = new HashMap<>();
-        map.keySet();
-//        CountDownLatch
-        Maps.newHashMap().keySet();
-
-        return null;
+public class Factory  {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("https://www.baidu.com");
+        InputStream inputStream = url.openStream();
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        String line;
+        while ((line = bufferedReader.readLine())!=null) {
+            System.out.println(line);
+        }
     }
+
 }

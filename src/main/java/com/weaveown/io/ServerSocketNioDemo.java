@@ -17,14 +17,14 @@ import java.util.Set;
 public class ServerSocketNioDemo {
     public static void main(String[] args) throws Exception {
         Selector selector = Selector.open();
-        ServerSocketChannel socketChannel = ServerSocketChannel.open();
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         // 设置非阻塞
-        socketChannel.configureBlocking(false);
-        socketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        serverSocketChannel.configureBlocking(false);
+        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
-        ServerSocket socket = socketChannel.socket();
+        ServerSocket serverSocket = serverSocketChannel.socket();
         SocketAddress socketAddress = new InetSocketAddress("127.0.0.1", 8888);
-        socket.bind(socketAddress);
+        serverSocket.bind(socketAddress);
         while (true) {
             System.out.println("selector.select() start");
             selector.select();
@@ -35,9 +35,11 @@ public class ServerSocketNioDemo {
                 SelectionKey selectionKey = iterator.next();
                 if (selectionKey.isAcceptable()) {
                     ServerSocketChannel channel = (ServerSocketChannel) selectionKey.channel();
-                    SocketChannel accept = channel.accept();
-                    accept.configureBlocking(false);
-                    accept.register(selector, SelectionKey.OP_READ);
+                    // 服务器会为每个新连接创建一个 SocketChannel
+                    SocketChannel socketChannel = channel.accept();
+                    socketChannel.configureBlocking(false);
+                    // 这个新连接主要用于从客户端读取数据 注册一个事件到selector
+                    socketChannel.register(selector, SelectionKey.OP_READ);
                     System.out.println(" channel.register(selector, SelectionKey.OP_READ);");
                 } else if (selectionKey.isReadable()) {
                     SocketChannel sChannel = (SocketChannel) selectionKey.channel();

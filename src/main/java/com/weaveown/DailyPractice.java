@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class DailyPractice {
     public static void main(String[] args) throws Exception {
-       List<String> list = new ArrayList<>();
+       assert false;
+        System.out.println("123");
     }
 }

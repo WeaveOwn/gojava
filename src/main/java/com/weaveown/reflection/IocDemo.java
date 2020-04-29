@@ -14,10 +14,10 @@ import java.util.Map;
  * @author wangwei
  * @date 2020/4/21 22:45
  */
-public class Demo {
+public class IocDemo {
     static Map<String, Object> ioc = new HashMap<>();
     public static void main(String[] args) throws Exception {
-        URL resource = Demo.class.getClassLoader().getResource("com.weaveown.reflection.scan".replaceAll("\\.", "/"));
+        URL resource = IocDemo.class.getClassLoader().getResource("com.weaveown.reflection.scan".replaceAll("\\.", "/"));
         File file = new File(resource.getFile());
         for (File listFile : file.listFiles()) {
             String className = "com.weaveown.reflection.scan" + "." + listFile.getName().replaceAll(".class", "");
@@ -32,6 +32,9 @@ public class Demo {
             Field[] fields = entry.getValue().getClass().getDeclaredFields();
             for (Field field : fields) {
                 WAutoWired annotation = field.getAnnotation(WAutoWired.class);
+                if (annotation == null) {
+                    continue;
+                }
                 String beanName = annotation.value();
                 if ("".equals(annotation.value())){
                     beanName = field.getType().getSimpleName();

@@ -13,6 +13,8 @@ public class TestController {
     @WAutoWired
     private TestService testService;
 
+    private String a;
+
     public void hello() {
         testService.hello();;
     }

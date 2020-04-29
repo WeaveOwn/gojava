@@ -1,4 +1,4 @@
-package com.weaveown.io;
+package com.weaveown.io.socket;
 
 import org.apache.log4j.net.SocketServer;
 

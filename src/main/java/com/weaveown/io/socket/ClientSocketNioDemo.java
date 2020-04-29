@@ -1,4 +1,4 @@
-package com.weaveown.io;
+package com.weaveown.io.socket;
 
 import java.io.IOException;
 import java.io.OutputStream;

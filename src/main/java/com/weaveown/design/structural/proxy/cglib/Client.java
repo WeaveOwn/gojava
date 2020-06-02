@@ -11,7 +11,7 @@ public class Client {
     public static void main(String[] args) {
 
         long s = System.currentTimeMillis();
-        for (int i=0; i< 100000; i++){
+        for (int i = 0; i < 100000; i++) {
             HelloCglib helloCglib = (HelloCglib) new MyMethodInterceptor().getProxy(new HelloCglib());
             helloCglib.sayHello();
         }

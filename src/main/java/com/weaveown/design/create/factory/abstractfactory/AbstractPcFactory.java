@@ -6,5 +6,6 @@ package com.weaveown.design.create.factory.abstractfactory;
  */
 public abstract class AbstractPcFactory {
     public abstract Keybo getKeybo();
+
     public abstract Mouse getMouse();
 }

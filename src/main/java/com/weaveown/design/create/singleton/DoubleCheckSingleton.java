@@ -9,13 +9,15 @@ public class DoubleCheckSingleton {
      * 饿汉式（双重检验）
      */
     private volatile DoubleCheckSingleton singleton = null;
-    private DoubleCheckSingleton(){
+
+    private DoubleCheckSingleton() {
 
     }
+
     public DoubleCheckSingleton getSingleton() {
-        if (singleton == null){
+        if (singleton == null) {
             synchronized (DoubleCheckSingleton.class) {
-                if (singleton == null){
+                if (singleton == null) {
                     singleton = new DoubleCheckSingleton();
                 }
             }

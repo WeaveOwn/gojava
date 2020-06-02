@@ -4,6 +4,7 @@ import java.util.concurrent.*;
 
 /**
  * 信号量demo
+ *
  * @author WeaveOwn
  */
 public class SemaphoreExample {
@@ -13,7 +14,7 @@ public class SemaphoreExample {
         Semaphore semaphore = new Semaphore(semaphoreCount);
         ExecutorService executorService = buildExecutor();
         for (int i = 0; i < threadCount; i++) {
-            executorService.execute(()->{
+            executorService.execute(() -> {
                 try {
                     semaphore.acquire();
                     System.out.println(Thread.currentThread().getName());
@@ -29,9 +30,10 @@ public class SemaphoreExample {
         }
         executorService.shutdown();
     }
+
     private static ThreadPoolExecutor buildExecutor() {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(
-                10, 20,60L, TimeUnit.SECONDS,new LinkedBlockingDeque<>());
+                10, 20, 60L, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
         executor.setThreadFactory(new ThreadFactory() {
             @Override
             public Thread newThread(Runnable r) {

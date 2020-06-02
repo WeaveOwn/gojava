@@ -16,11 +16,11 @@ public class BinarySearch {
         while (low <= high) {
             mid = (low + high) / 2;
             int guess = items[mid];
-            if (guess == item){
+            if (guess == item) {
                 return mid;
-            }else if (guess < item){
+            } else if (guess < item) {
                 low = mid + 1;
-            }else {
+            } else {
                 high = mid - 1;
             }
         }
@@ -28,7 +28,7 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        int[] items = new int[]{1,2,3,4,5,6,7,8,9,10};
+        int[] items = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int search = new BinarySearch().search(items, 11);
         System.out.println(search);
     }

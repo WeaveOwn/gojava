@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class SelectionSort {
 
-    public List<Integer> sort(List<Integer> list){
+    public List<Integer> sort(List<Integer> list) {
         List<Integer> sortedList = new ArrayList<>();
         int size = list.size();
         for (int i = 0; i < size; i++) {
@@ -23,10 +23,10 @@ public class SelectionSort {
         return sortedList;
     }
 
-    private Integer findSmall(List<Integer> arr){
+    private Integer findSmall(List<Integer> arr) {
         Integer min = arr.get(0);
         for (Integer integer : arr) {
-            if (integer < min){
+            if (integer < min) {
                 min = integer;
             }
         }

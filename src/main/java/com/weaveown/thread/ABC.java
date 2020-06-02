@@ -12,7 +12,7 @@ public class ABC {
     public static void main(String[] args) {
         Thread threads[] = new Thread[3];
         for (int i = 0; i < threads.length; i++) {
-            threads[i] = new ThreadPrint((char) ('A' + i) , 10*threads.length-1);
+            threads[i] = new ThreadPrint((char) ('A' + i), 10 * threads.length - 1);
             threads[i].start();
         }
     }
@@ -28,11 +28,12 @@ class ThreadPrint extends Thread {
     }
 
     static volatile int n = 3;
+
     @Override
     public void run() {
-        while (n<printNum) {
+        while (n < printNum) {
 
-            if(currentName ==  (char)('A' + n%3)) {
+            if (currentName == (char) ('A' + n % 3)) {
                 System.out.println(currentName);
                 n++;
             }

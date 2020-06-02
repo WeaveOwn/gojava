@@ -20,6 +20,7 @@ public class UnixTime {
     public long getValue() {
         return value;
     }
+
     @Override
     public String toString() {
         return new Date((getValue() - 2208988800L) * 1000L).toString();

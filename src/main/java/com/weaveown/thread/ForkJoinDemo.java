@@ -6,6 +6,7 @@ import java.util.concurrent.RecursiveTask;
 
 /**
  * fork join demo
+ *
  * @author WeaveOwn
  */
 public class ForkJoinDemo {
@@ -35,6 +36,7 @@ public class ForkJoinDemo {
 
 
 }
+
 class ForkJoin extends RecursiveTask<Integer> {
     private int first;
     private int last;

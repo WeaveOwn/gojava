@@ -16,11 +16,12 @@ public class NioDemo {
         int length;
         while ((length = channel.read(byteBuffer)) != -1) {
             byte[] array = byteBuffer.array();
-            String s = new String(array,0,length, "utf-8");
+            String s = new String(array, 0, length, "utf-8");
             System.out.println(s);
             byteBuffer.clear();
         }
     }
+
     public static void fastCopy(String src, String dist) throws IOException {
 
         /* 获得源文件的输入字节流 */

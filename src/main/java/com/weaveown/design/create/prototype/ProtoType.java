@@ -19,7 +19,7 @@ public class ProtoType implements Cloneable {
     private String s;
     private List<String> list = new ArrayList<String>();
 
-    public ProtoType(){
+    public ProtoType() {
         this.i = 1;
         this.j = 2;
         this.s = "3";

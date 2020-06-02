@@ -16,6 +16,7 @@ import java.util.Map;
  */
 public class IocDemo {
     static Map<String, Object> ioc = new HashMap<>();
+
     public static void main(String[] args) throws Exception {
         URL resource = IocDemo.class.getClassLoader().getResource("com.weaveown.reflection.scan".replaceAll("\\.", "/"));
         File file = new File(resource.getFile());
@@ -36,14 +37,14 @@ public class IocDemo {
                     continue;
                 }
                 String beanName = annotation.value();
-                if ("".equals(annotation.value())){
+                if ("".equals(annotation.value())) {
                     beanName = field.getType().getSimpleName();
                 }
                 field.setAccessible(true);
                 field.set(entry.getValue(), ioc.get(beanName));
             }
         }
-        TestController testController = (TestController)ioc.get("TestController");
+        TestController testController = (TestController) ioc.get("TestController");
         testController.hello();
     }
 }

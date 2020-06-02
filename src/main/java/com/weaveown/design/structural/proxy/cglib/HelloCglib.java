@@ -8,7 +8,7 @@ package com.weaveown.design.structural.proxy.cglib;
  * @Version : 1.0
  */
 public class HelloCglib {
-    public void sayHello(){
+    public void sayHello() {
         System.out.println("hello cglib");
     }
 }

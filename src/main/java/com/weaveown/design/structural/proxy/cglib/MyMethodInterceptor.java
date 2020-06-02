@@ -15,12 +15,13 @@ import java.lang.reflect.Method;
  */
 public class MyMethodInterceptor implements MethodInterceptor {
 
-    public Object getProxy(Object target){
+    public Object getProxy(Object target) {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(target.getClass());
         enhancer.setCallback(this);
         return enhancer.create();
     }
+
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         System.out.println("代理开始");

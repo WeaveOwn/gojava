@@ -14,13 +14,17 @@ import java.util.concurrent.TimeUnit;
  */
 public class Demo {
     public static void main(String[] args) throws Exception {
+//        createObservables();
+//        just();
         buffer();
-        Thread.sleep(100000);
+
     }
+
     public static void hello(String... args) {
         Flowable.fromArray(args).subscribe(s -> System.out.println("Hello " + s + "!"));
     }
-    public static void createObservables(){
+
+    public static void createObservables() {
         Observable<String> observable = Observable.create(e -> {
             e.onNext("Hello Observer");
             e.onComplete();
@@ -52,7 +56,7 @@ public class Demo {
 
     public static void just() {
         // 发送事件不能超过10次
-        Observable.just(1,2,3,4,5,6,7,8,9).subscribe(new Observer<Integer>() {
+        Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9).subscribe(new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable disposable) {
                 System.out.println("onSubscribe");
@@ -74,8 +78,9 @@ public class Demo {
             }
         });
     }
-    public static void future() throws Exception{
-        FutureTask< String > futureTask = new FutureTask <> (new Callable< String >() {
+
+    public static void future() throws Exception {
+        FutureTask<String> futureTask = new FutureTask<>(new Callable<String>() {
             @Override
             public String call() throws Exception {
                 return "返回结果";
@@ -87,6 +92,7 @@ public class Demo {
                 .subscribe(s -> System.out.println(s));
         System.out.println(futureTask.get());
     }
+
     public static void timer() {
         Observable.timer(2, TimeUnit.SECONDS).subscribe(new Observer<Long>() {
             @Override
@@ -110,6 +116,7 @@ public class Demo {
             }
         });
     }
+
     public static void interval() {
         Observable.interval(2, TimeUnit.SECONDS).subscribe(new Observer<Long>() {
             @Override
@@ -133,20 +140,21 @@ public class Demo {
             }
         });
     }
-    public static void buffer(){
+
+    public static void buffer() {
         Observable.just(1, 2, 3, 4, 5)
                 .buffer(2, 2)
-                .subscribe(new Observer <List< Integer >> () {
+                .subscribe(new Observer<List<Integer>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(List < Integer > integers) {
-                        System.out.println("缓冲区大小     " +  integers.size());
-                        for (Integer i: integers) {
-                            System.out.println("元素     "  + i);
+                    public void onNext(List<Integer> integers) {
+                        System.out.println("缓冲区大小     " + integers.size());
+                        for (Integer i : integers) {
+                            System.out.println("元素     " + i);
                         }
                     }
 

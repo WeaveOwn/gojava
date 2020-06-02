@@ -9,9 +9,11 @@ public class EagerSingleton {
      * 饿汉式
      */
     private static EagerSingleton singleton = new EagerSingleton();
-    private EagerSingleton(){
+
+    private EagerSingleton() {
 
     }
+
     public static EagerSingleton getInstance() {
         return singleton;
     }

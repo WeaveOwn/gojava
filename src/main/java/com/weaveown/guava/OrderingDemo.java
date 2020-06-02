@@ -21,11 +21,12 @@ public class OrderingDemo {
         String name;
         int age;
     }
+
     public static void main(String[] args) {
         List<Person> strings = Lists.newArrayList();
         strings.add(new Person("ww", 1));
-        strings.add(new Person("w",7));
-        strings.add(new Person("wwww",2));
+        strings.add(new Person("w", 7));
+        strings.add(new Person("wwww", 2));
         Ordering<Person> ordering = Ordering.natural().nullsFirst().onResultOf(new Function<Person, Comparable>() {
             @Nullable
             @Override

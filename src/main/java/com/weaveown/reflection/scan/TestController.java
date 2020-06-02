@@ -16,6 +16,7 @@ public class TestController {
     private String a;
 
     public void hello() {
-        testService.hello();;
+        testService.hello();
+        ;
     }
 }

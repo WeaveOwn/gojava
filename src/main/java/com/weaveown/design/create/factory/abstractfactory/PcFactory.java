@@ -10,9 +10,12 @@ import com.weaveown.design.create.factory.abstractfactory.hp.HpFactory;
 public class PcFactory {
     public AbstractPcFactory getPcFactory(String name) {
         switch (name) {
-            case "HP": return new HpFactory();
-            case "DELL": return new DellFactory();
-            default: return null;
+            case "HP":
+                return new HpFactory();
+            case "DELL":
+                return new DellFactory();
+            default:
+                return null;
         }
     }
 

@@ -8,7 +8,7 @@ import java.util.concurrent.FutureTask;
 public class FutureTaskDemo {
 
     public static void main(String[] args) throws Exception {
-        FutureTask futureTask = new FutureTask(()->{
+        FutureTask futureTask = new FutureTask(() -> {
             int sum = 0;
             for (int i = 0; i < 10; i++) {
                 Thread.sleep(100);
@@ -17,7 +17,7 @@ public class FutureTaskDemo {
             return sum;
         });
         new Thread(futureTask).start();
-        new Thread(()->{
+        new Thread(() -> {
             System.out.println("do other thing");
         }).start();
         System.out.println(futureTask.get());

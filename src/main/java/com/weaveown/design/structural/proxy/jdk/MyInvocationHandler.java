@@ -11,11 +11,13 @@ import java.lang.reflect.Method;
  * @Version : 1.0
  */
 public class MyInvocationHandler implements InvocationHandler {
-   
+
     private Object target;
-    public MyInvocationHandler(Object target){
+
+    public MyInvocationHandler(Object target) {
         this.target = target;
     }
+
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("代理开始");

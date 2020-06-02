@@ -13,6 +13,6 @@ public class HutoolDemo {
     public static void main(String[] args) {
         boolean less = NumberUtil.isLess(new BigDecimal(-100), BigDecimal.ZERO);
         System.out.println(less);
-        System.out.println(Objects.equals(new BigDecimal(0.03),new BigDecimal(0.03)));
+        System.out.println(Objects.equals(new BigDecimal(0.03), new BigDecimal(0.03)));
     }
 }

@@ -6,10 +6,12 @@ package com.weaveown.leetcode;
  */
 public class TwoSum {
     public static void main(String[] args) {
-        twoSum(new int[]{2,7,34,123}, 9);
+        twoSum(new int[]{2, 7, 34, 123}, 9);
     }
+
     /**
      * 主要思想还是hash表的运用
+     *
      * @param nums
      * @param target
      * @return
@@ -24,8 +26,8 @@ public class TwoSum {
         for (int i = 0; i < nums.length; i++) {
             int result = target - nums[i];
             int index = arr[result & max];
-            if (index!=0){
-                return new int[]{index-1, i};
+            if (index != 0) {
+                return new int[]{index - 1, i};
             }
             arr[nums[i] & max] = i + 1;
         }

@@ -1,6 +1,6 @@
-package com.weaveown.reflection.scan;
+package com.weaveown.ioc.scan;
 
-import com.weaveown.reflection.annotation.WController;
+import com.weaveown.ioc.annotation.WController;
 
 /**
  * @author wangwei

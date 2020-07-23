@@ -10,6 +10,6 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockConditionDemo {
     private Lock lock = new ReentrantLock();
-    private Condition fullCondition = lock.newCondition();
-    private Condition emptyCondition = lock.newCondition();
+    private Condition notFullCondition = lock.newCondition();
+    private Condition notEmptyCondition = lock.newCondition();
 }

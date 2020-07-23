@@ -1,23 +1,17 @@
-package com.weaveown;
+package com.weaveown.design.structural.proxy.other;
 
-import com.weaveown.design.structural.proxy.other.Select;
-import com.weaveown.design.structural.proxy.other.Weave;
+import com.weaveown.DailyPractice;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * @author WeaveOwn
+ * @author wangwei
+ * @date 2020/7/22
  */
-public class DailyPractice {
-    static {
-        System.out.println("staic");
-    }
-    {
-        System.out.println("初始化");
-    }
-    public static void main(String[] args) throws Exception {
+public class Main {
+    public static void main(String[] args) {
         Weave weave = (Weave) Proxy.newProxyInstance(DailyPractice.class.getClassLoader(), new Class[]{Weave.class}, new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -34,6 +28,4 @@ public class DailyPractice {
         });
         weave.print();
     }
-
 }
-

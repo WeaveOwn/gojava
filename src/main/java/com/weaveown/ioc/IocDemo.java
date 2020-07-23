@@ -1,8 +1,8 @@
-package com.weaveown.reflection;
+package com.weaveown.ioc;
 
-import com.weaveown.reflection.annotation.WAutoWired;
-import com.weaveown.reflection.annotation.WController;
-import com.weaveown.reflection.scan.TestController;
+import com.weaveown.ioc.annotation.WAutoWired;
+import com.weaveown.ioc.annotation.WController;
+import com.weaveown.ioc.scan.TestController;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -18,7 +18,7 @@ public class IocDemo {
     static Map<String, Object> ioc = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
-        URL resource = IocDemo.class.getClassLoader().getResource("com.weaveown.reflection.scan".replaceAll("\\.", "/"));
+        URL resource = IocDemo.class.getClassLoader().getResource("com.weaveown.ioc.scan".replaceAll("\\.", "/"));
         File file = new File(resource.getFile());
         for (File listFile : file.listFiles()) {
             String className = "com.weaveown.reflection.scan" + "." + listFile.getName().replaceAll(".class", "");
@@ -41,6 +41,8 @@ public class IocDemo {
                     beanName = field.getType().getSimpleName();
                 }
                 field.setAccessible(true);
+                // 设置哪个实例对象的field设置需要的值
+                // 往实例的对象的field填充值
                 field.set(entry.getValue(), ioc.get(beanName));
             }
         }

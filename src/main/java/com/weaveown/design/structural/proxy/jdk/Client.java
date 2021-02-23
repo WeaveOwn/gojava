@@ -1,5 +1,9 @@
 package com.weaveown.design.structural.proxy.jdk;
 
+import sun.misc.ProxyGenerator;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
@@ -35,5 +39,13 @@ public class Client {
         helloWorld.sayHello();
         long e = System.currentTimeMillis();
         System.out.println(e - s);
+
+        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{IHelloWorld.class});
+        FileOutputStream fileOutputStream = new FileOutputStream("/Users/wangwei/Desktop/$Proxy0.class");
+        fileOutputStream.write(bytes);
+        fileOutputStream.close();
+
+
     }
+
 }

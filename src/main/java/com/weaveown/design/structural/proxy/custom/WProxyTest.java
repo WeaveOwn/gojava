@@ -1,6 +1,8 @@
 package com.weaveown.design.structural.proxy.custom;
 
 /**
+ * 手撸简单的动态代理
+ *
  * @author wangwei
  * @date 2021/2/22
  */

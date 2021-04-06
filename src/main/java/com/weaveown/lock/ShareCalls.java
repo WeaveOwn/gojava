@@ -14,43 +14,13 @@ import java.util.function.Supplier;
 public class ShareCalls<T> {
 
 
-    private static class Call<T> {
-        private CountDownLatch countDownLatch;
-        private T data;
-        private boolean hasCache;
-
-        public boolean getHasCache() {
-            return hasCache;
-        }
-
-        public void setHasCache(boolean hasCache) {
-            this.hasCache = hasCache;
-        }
-
-        public T getData() {
-            return data;
-        }
-
-        public void setData(T data) {
-            this.data = data;
-        }
-
-        public CountDownLatch getCountDownLatch() {
-            return countDownLatch;
-        }
-
-        public Call() {
-            countDownLatch = new CountDownLatch(1);
-        }
-    }
+    private Map<String, Call> calls;
+    private Lock lock;
 
     public ShareCalls() {
         calls = new ConcurrentHashMap<>();
         lock = new ReentrantLock();
     }
-
-    private Map<String, Call> calls;
-    private Lock lock;
 
     public T call(String key, Supplier<T> supplier) {
         Call<T> c = createCall(key);
@@ -90,5 +60,35 @@ public class ShareCalls<T> {
         calls.remove(key);
         lock.unlock();
         c.getCountDownLatch().countDown();
+    }
+
+    private static class Call<T> {
+        private CountDownLatch countDownLatch;
+        private T data;
+        private boolean hasCache;
+
+        public boolean getHasCache() {
+            return hasCache;
+        }
+
+        public void setHasCache(boolean hasCache) {
+            this.hasCache = hasCache;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public CountDownLatch getCountDownLatch() {
+            return countDownLatch;
+        }
+
+        public Call() {
+            countDownLatch = new CountDownLatch(1);
+        }
     }
 }

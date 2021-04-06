@@ -8,7 +8,7 @@ public class DoubleCheckSingleton {
     /**
      * 饿汉式（双重检验）
      */
-    private volatile DoubleCheckSingleton singleton = null;
+    private transient volatile DoubleCheckSingleton singleton = null;
 
     private DoubleCheckSingleton() {
 

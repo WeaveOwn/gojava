@@ -1,6 +1,6 @@
 package com.weaveown.lock;
 
-import lombok.Data;
+import lombok.Getter;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
@@ -35,20 +35,22 @@ public class LockTest {
         Node node = new Node("1");
         tail = node;
         Node t = tail;
-//        unsafe.compareAndSwapObject(this, tailOffset, t, node2);
-        tail = node2;
+        System.out.println(t);
+        System.out.println(tail);
+        // 改变的是this本身域的值, 而t不属于实例域只是指向了tail,所以最终改变的是tail,对应tailOffset,因为上面获取的偏移量是针对tail的
+        unsafe.compareAndSwapObject(this, tailOffset, t, node2);
         System.out.println(tail.name);
         System.out.println(t.name);
     }
 
     public static void main(String[] args) {
-        new Thread(() -> lock.lock()).start();
-        new Thread(() -> lock.lock()).start();
+//        new Thread(() -> lock.lock()).start();
+//        new Thread(() -> lock.lock()).start();
         new LockTest().test();
 
     }
 
-    @Data
+    @Getter
     static class Node {
         private Node next;
         private Node pre;

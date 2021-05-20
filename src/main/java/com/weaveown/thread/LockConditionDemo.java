@@ -9,7 +9,13 @@ import java.util.concurrent.locks.ReentrantLock;
  * @date 2020/5/17
  */
 public class LockConditionDemo {
-    private Lock lock = new ReentrantLock();
-    private Condition notFullCondition = lock.newCondition();
-    private Condition notEmptyCondition = lock.newCondition();
+    private static Lock lock = new ReentrantLock();
+    private static Condition notFullCondition = lock.newCondition();
+    private static Condition notEmptyCondition = lock.newCondition();
+
+    public static void main(String[] args) throws InterruptedException {
+        lock.lock();
+        notEmptyCondition.await();
+        lock.unlock();
+    }
 }

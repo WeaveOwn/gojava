@@ -37,4 +37,8 @@ public class OrderingDemo {
         List<Person> people = ordering.sortedCopy(strings);
         System.out.println(people);
     }
+
+    private static <T> Ordering<T> orderNatural(Function<T, Comparable> function) {
+        return Ordering.natural().nullsFirst().onResultOf(function);
+    }
 }

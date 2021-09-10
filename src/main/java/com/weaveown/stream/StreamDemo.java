@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
  * @date 2020/7/13
  */
 public class StreamDemo {
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         String collect = Lists.newArrayList("1", "2", "3").stream().collect(Collectors.joining(","));
         System.out.println(collect);
@@ -31,6 +34,7 @@ public class StreamDemo {
         System.out.println(collect);
         System.out.println(collect1);
     }
+
     @Data
     @Builder
     @Getter

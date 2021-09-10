@@ -14,8 +14,8 @@ import java.util.function.Supplier;
 public class ShareCalls<T> {
 
 
-    private Map<String, Call> calls;
-    private Lock lock;
+    private final Map<String, Call<T>> calls;
+    private final Lock lock;
 
     public ShareCalls() {
         calls = new ConcurrentHashMap<>();
@@ -36,8 +36,8 @@ public class ShareCalls<T> {
     private Call<T> createCall(String key) {
         lock.lock();
         if (calls.containsKey(key)) {
+            Call<T> c = calls.get(key);
             lock.unlock();
-            Call c = calls.get(key);
             c.setHasCache(true);
             try {
                 c.countDownLatch.await();
@@ -63,7 +63,7 @@ public class ShareCalls<T> {
     }
 
     private static class Call<T> {
-        private CountDownLatch countDownLatch;
+        private final CountDownLatch countDownLatch;
         private T data;
         private boolean hasCache;
 

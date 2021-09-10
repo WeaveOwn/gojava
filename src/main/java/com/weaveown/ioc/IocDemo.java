@@ -7,6 +7,7 @@ import com.weaveown.ioc.scan.TestController;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +47,7 @@ public class IocDemo {
                 field.set(entry.getValue(), ioc.get(beanName));
             }
         }
+        MessageDigest md5 = MessageDigest.getInstance("md5");
         TestController testController = (TestController) ioc.get("TestController");
         testController.hello();
     }

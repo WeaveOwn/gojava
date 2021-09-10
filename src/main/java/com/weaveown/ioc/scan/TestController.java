@@ -17,6 +17,5 @@ public class TestController {
 
     public void hello() {
         testService.hello();
-        ;
     }
 }

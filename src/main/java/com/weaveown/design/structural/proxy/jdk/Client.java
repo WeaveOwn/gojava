@@ -1,11 +1,8 @@
 package com.weaveown.design.structural.proxy.jdk;
 
-import sun.misc.ProxyGenerator;
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
@@ -35,15 +32,16 @@ public class Client {
         // 3. 实例化InvocationHandler
         final InvocationHandler ih = new MyInvocationHandler(new HelloWorldImpl());
         // 4. 传入参数获取实例对象
-        IHelloWorld helloWorld = (IHelloWorld) constructor.newInstance(ih);
-        helloWorld.sayHello();
+        Object bean = constructor.newInstance(ih);
+        Method method = bean.getClass().getMethod("sayHello");
+        method.invoke(bean);
         long e = System.currentTimeMillis();
         System.out.println(e - s);
 
-        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{IHelloWorld.class});
-        FileOutputStream fileOutputStream = new FileOutputStream("/Users/wangwei/Desktop/$Proxy0.class");
-        fileOutputStream.write(bytes);
-        fileOutputStream.close();
+//        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{IHelloWorld.class});
+//        FileOutputStream fileOutputStream = new FileOutputStream("/Users/wangwei/Desktop/$Proxy0.class");
+//        fileOutputStream.write(bytes);
+//        fileOutputStream.close();
 
 
     }

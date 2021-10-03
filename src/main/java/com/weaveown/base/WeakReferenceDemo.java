@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * weak reference 引用强引用时,不会被回收. 但如果有强引用引用WeakReference时还是被回收.ThreadLocal里面用的就是WeakReference只要不把ThreadLocal = null就不会被释放资源的.
+ *
  * @author wangwei
  * @date 2021/4/6
  */

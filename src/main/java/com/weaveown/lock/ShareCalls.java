@@ -1,5 +1,6 @@
 package com.weaveown.lock;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -11,10 +12,10 @@ import java.util.function.Supplier;
  * @author wangwei
  * @date 2021/3/31
  */
-public class ShareCalls<T> {
+public class ShareCalls {
 
 
-    private final Map<String, Call<T>> calls;
+    private final Map<String, Call> calls;
     private final Lock lock;
 
     public ShareCalls() {
@@ -22,7 +23,7 @@ public class ShareCalls<T> {
         lock = new ReentrantLock();
     }
 
-    public T call(String key, Supplier<T> supplier) {
+    public <T> T call(String key, Supplier<T> supplier) {
         Call<T> c = createCall(key);
         if (c.getHasCache()) {
             return c.getData();
@@ -33,7 +34,7 @@ public class ShareCalls<T> {
     }
 
 
-    private Call<T> createCall(String key) {
+    private <T> Call<T> createCall(String key) {
         lock.lock();
         if (calls.containsKey(key)) {
             Call<T> c = calls.get(key);
@@ -54,7 +55,7 @@ public class ShareCalls<T> {
         return c;
     }
 
-    private void makeCall(Call<T> c, String key, Supplier<T> supplier) {
+    private <T> void makeCall(Call<T> c, String key, Supplier<T> supplier) {
         c.setData(supplier.get());
         lock.lock();
         calls.remove(key);
@@ -90,5 +91,15 @@ public class ShareCalls<T> {
         public Call() {
             countDownLatch = new CountDownLatch(1);
         }
+    }
+
+    public static void main(String[] args) {
+        final ShareCalls shareCalls = new ShareCalls();
+        final String a = shareCalls.call("a", () -> "a");
+        System.out.println(a);
+        Map<String, String> map = new HashMap();
+        map.put("b", "b");
+        final Map<String, String> b = shareCalls.call("a", () -> map);
+        System.out.println(b);
     }
 }

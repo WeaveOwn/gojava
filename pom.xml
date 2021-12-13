@@ -83,6 +83,11 @@
             <artifactId>reactor-core</artifactId>
             <version>3.3.5.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

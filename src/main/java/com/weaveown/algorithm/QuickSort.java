@@ -18,9 +18,10 @@ public class QuickSort {
             return;
         }
 
-        int mid = partition(nums, left, right);
-        sort(nums, left, mid - 1);
-        sort(nums, mid + 1, right);
+        int point = partition(nums, left, right);
+        sort(nums, left, point - 1);
+        sort(nums, point + 1, right);
+
     }
 
     private static int partition(int[] nums, int left, int right) {
@@ -28,17 +29,20 @@ public class QuickSort {
         int i = left;
         for (int j = left; j <= right - 1; j++) {
             if (nums[j] < pivot) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
+                swap(nums, i, j);
                 i++;
             }
         }
 
-        int temp = nums[i];
-        nums[i] = nums[right];
-        nums[right] = temp;
+        swap(nums, right, i);
         return i;
     }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
 
 }

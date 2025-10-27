@@ -39,12 +39,12 @@ public class ShareCalls {
         if (calls.containsKey(key)) {
             Call<T> c = calls.get(key);
             lock.unlock();
-            c.setHasCache(true);
             try {
                 c.countDownLatch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            c.setHasCache(true);
             return c;
         }
 

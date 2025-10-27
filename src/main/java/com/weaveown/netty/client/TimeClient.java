@@ -1,4 +1,4 @@
-package com.weaveown.netty;
+package com.weaveown.netty.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -16,7 +16,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 public class TimeClient {
     public static void main(String[] args) throws Exception {
         String host = "127.0.0.1";
-        int port = 8000;
+        int port = 8089;
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             Bootstrap bootstrap = new Bootstrap();
@@ -27,6 +27,7 @@ public class TimeClient {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(new TimeDecoder(), new TimeClientHandler());
+//                            ch.pipeline().addLast(new TimeClientHandler());
                         }
                     });
             ChannelFuture future = bootstrap.connect(host, port).sync();

@@ -10,32 +10,33 @@ public class MergeSort {
         final int[] ints = {1, 5, 2, 6, 8100, 23, 6, 2, 7, 23, 2, 6, 57, 123, 61, 253, 6, 3, 13, 46, 4, 6, 1, 3, 4, 4, 1, 3, 54, 6, 1, 5, 3, 4534, 5, 31, 3, 4, 5};
         sort(ints, 0, ints.length - 1);
         for (int i = 0; i < ints.length; i++) {
-            System.out.println(ints[i]);
+            System.out.print(ints[i]);
+            System.out.print(" ");
         }
     }
 
-    public static void sort(int[] numbers, int left, int right) {
-        if (left >= right) {
+    private static void sort(int[] numbers, int left, int right) {
+        if (right <= left) {
             return;
+
         }
 
-        int mid = left + (right - left) / 2;
+        int mid = (right - left) / 2 + left;
         sort(numbers, left, mid);
         sort(numbers, mid + 1, right);
-        merge(numbers, left, mid, right);
+        merge(numbers, left, right, mid);
     }
 
-    private static void merge(int[] numbers, int left, int mid, int right) {
-        int[] temp = new int[right - left + 1];
-        int t = 0;
+    private static void merge(int[] numbers, int left, int right, int mid) {
+        int[] temps = new int[right - left + 1];
         int i = left;
         int j = mid + 1;
-
+        int k = 0;
         while (i <= mid && j <= right) {
-            if (numbers[i] < numbers[j]) {
-                temp[t++] = numbers[i++];
+            if (numbers[i] <= numbers[j]) {
+                temps[k++] = numbers[i++];
             } else {
-                temp[t++] = numbers[j++];
+                temps[k++] = numbers[j++];
             }
         }
 
@@ -47,11 +48,11 @@ public class MergeSort {
         }
 
         while (start <= end) {
-            temp[t++] = numbers[start++];
+            temps[k++] = numbers[start++];
         }
 
-        for (int k = 0; k <= right - left; k++) {
-            numbers[left + k] = temp[k];
+        for (int t = 0; t < temps.length; t++) {
+            numbers[left + t] = temps[t];
         }
     }
 

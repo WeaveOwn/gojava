@@ -1,0 +1,17 @@
+Index: src/main/java/com/weaveown/lock/LockTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/weaveown/lock/LockTest.java b/src/main/java/com/weaveown/lock/LockTest.java
+--- a/src/main/java/com/weaveown/lock/LockTest.java	(revision ec06951879a7b8c09533eba99bb089a6ccda0035)
++++ b/src/main/java/com/weaveown/lock/LockTest.java	(revision 0eaa0e75e6035a75a747e22961efd874750c23de)
+@@ -7,6 +7,8 @@
+ import java.util.concurrent.locks.ReentrantLock;
+ 
+ /**
++ * Lock
++ *
+  * @author wangwei
+  * @date 2021/4/1
+  */

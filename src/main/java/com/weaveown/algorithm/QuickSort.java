@@ -6,43 +6,41 @@ package com.weaveown.algorithm;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        final int[] ints = {2, 5, 1, 5, 6, 7, 2, 8, 3};
-        sort(ints, 0, ints.length - 1);
-        for (int i = 0; i < ints.length; i++) {
-            System.out.println(ints[i]);
+        int[] numbers = new int[]{9, 7, 53, 12, 6, 23, 61, 832, 2, 51, 2};
+        sort(numbers, 0, numbers.length - 1);
+        for (int number : numbers) {
+            System.out.print(number);
+            System.out.print(" ");
         }
     }
 
-    public static void sort(int[] nums, int left, int right) {
-        if (left >= right) {
+    public static void sort(int[] numbers, int left, int right) {
+        if (right <= left) {
             return;
         }
 
-        int point = partition(nums, left, right);
-        sort(nums, left, point - 1);
-        sort(nums, point + 1, right);
-
+        int point = partition(numbers, left, right);
+        sort(numbers, left, point - 1);
+        sort(numbers, point + 1, right);
     }
 
-    private static int partition(int[] nums, int left, int right) {
-        int pivot = nums[right];
+    private static int partition(int[] numbers, int left, int right) {
+        int pivot = numbers[right];
         int i = left;
-        for (int j = left; j <= right - 1; j++) {
-            if (nums[j] < pivot) {
-                swap(nums, i, j);
+        for (int j = left; j < right; j++) {
+            if (numbers[j] < pivot) {
+                swap(numbers, i, j);
                 i++;
             }
         }
+        swap(numbers, right, i);
 
-        swap(nums, right, i);
         return i;
     }
 
-    private static void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+    private static void swap(int[] numbers, int i, int j) {
+        int temp = numbers[i];
+        numbers[i] = numbers[j];
+        numbers[j] = temp;
     }
-
-
 }

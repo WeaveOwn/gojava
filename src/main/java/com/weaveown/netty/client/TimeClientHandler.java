@@ -1,5 +1,6 @@
-package com.weaveown.netty;
+package com.weaveown.netty.client;
 
+import com.weaveown.netty.UnixTime;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -27,6 +28,14 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
         UnixTime m = (UnixTime) msg;
         System.out.println(m);
         ctx.close();
+//        final ByteBuf m = (ByteBuf) msg;
+//        buf.writeBytes(m);
+//        m.release();
+//        if (buf.readableBytes() >= 4) {
+//            final long currentTime = (buf.readUnsignedInt() - 2208988800L) * 1000L;
+//            System.out.println(new Date(currentTime));
+//            ctx.close();
+//        }
     }
 
     @Override

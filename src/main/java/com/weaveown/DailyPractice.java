@@ -1,38 +1,26 @@
 package com.weaveown;
 
-import com.weaveown.design.structural.proxy.other.Select;
-import com.weaveown.design.structural.proxy.other.Weave;
-
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author WeaveOwn
  */
 public class DailyPractice {
-    static {
-        System.out.println("staic");
-    }
-    {
-        System.out.println("初始化");
-    }
+    static AtomicInteger sum = new AtomicInteger(0);
+
     public static void main(String[] args) throws Exception {
-        Weave weave = (Weave) Proxy.newProxyInstance(DailyPractice.class.getClassLoader(), new Class[]{Weave.class}, new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                Select annotation = method.getAnnotation(Select.class);
-
-                if (annotation != null){
-                    String value = annotation.value();
-                    System.out.println(value);
-                }
-
-
-                return null;
+        Thread.sleep(20000);
+        final Runnable runnable = () -> {
+            for (int i = 0; i < 1000000000; i++) {
+                sum.getAndAdd(1);
             }
-        });
-        weave.print();
+        };
+        final Thread thread = new Thread(runnable);
+        final Thread thread1 = new Thread(runnable);
+        thread.start();
+        thread1.start();
+        Thread.sleep(2000);
+        System.out.println("num = " + sum);
     }
 
 }

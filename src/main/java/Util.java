@@ -17,6 +17,7 @@ public class Util {
             sum = sum.add(object.getBigDecimal("amount"));
         }
         System.out.println(sum.toPlainString());
+        System.out.println("12321312");
     }
 
 }
